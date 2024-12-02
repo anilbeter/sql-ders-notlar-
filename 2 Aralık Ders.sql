@@ -1,3 +1,5 @@
+USE Northwind
+
 SELECT *
 FROM Products
 
@@ -84,6 +86,7 @@ HAVING EmployeeID = 5
 ORDER BY EmployeeID
 
 -- Her bir ürünün ne kadar satıldığını gösteriyor
-SELECT od.ProductID, p.ProductName as [Satış Miktarı]
-FROM [Order Details] od INNER JOIN Products p on od.ProductID = p.ProductID
+SELECT od.ProductID, p.ProductName, COUNT(*) as [Satış Adedi]
+FROM [Order Details] od INNER JOIN Products p ON od.ProductID = p.ProductID
+GROUP BY od.ProductID, p.ProductName
 
