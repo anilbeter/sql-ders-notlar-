@@ -18,7 +18,7 @@ WHERE p.UnitsInStock = 0 AND p.UnitsOnOrder > 0
 -- Products tablosunu p olarak kaydettim(Products == p), p tablosundan stocku 0 solan ve orderı 0 dan büyük olan productsname(ler) i getir
 
 SELECT *
-FROM Products
+FROM [Products]
 WHERE UnitsInStock = 0 OR UnitsOnOrder = 0
 
 SELECT *
@@ -34,3 +34,31 @@ SELECT *
 FROM Products
 WHERE CategoryID in (1,2)
 -- CategoryID 1 ve 2 olanları getir
+
+SELECT COUNT(*) AS [Ürün Sayısı]
+FROM Products
+-- Ürünleri sayıyor, 77 tane ürün varmış 
+
+SELECT COUNT(ProductName)
+FROM Products
+-- Yukarıdaki kodla aynı mantık, 77 verim varsa 77sininde ProductName'i olduğu için 77 tane product name olacak
+
+SELECT *
+FROM Products
+
+SELECT LEFT (ProductName, 2) AS [ürün kısaltma]
+FROM Products
+-- ProductName'in ilk 2 harfini getir
+
+SELECT RIGHT (ProductName, 2) AS [ürün kısaltma]
+FROM Products
+-- ProductName'in son 2 harfini getir
+
+SELECT ProductName
+FROM [Order Details] INNER JOIN Products ON Products.ProductID  = [Order Details].ProductID
+
+-- INNER JOIN ORNEK
+SELECT c.ContactName, p.ProductName, ct.CategoryName
+FROM customers c INNER JOIN Orders o ON c.CustomerID=o.CustomerID INNER JOIN [Order Details] od on od.OrderID=o.OrderID
+  INNER JOIN Products p on p.ProductID=od.ProductID
+  INNER JOIN Categories ct on ct.CategoryID = p.CategoryID 
