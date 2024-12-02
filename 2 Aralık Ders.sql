@@ -61,4 +61,29 @@ FROM [Order Details] INNER JOIN Products ON Products.ProductID  = [Order Details
 SELECT c.ContactName, p.ProductName, ct.CategoryName
 FROM customers c INNER JOIN Orders o ON c.CustomerID=o.CustomerID INNER JOIN [Order Details] od on od.OrderID=o.OrderID
   INNER JOIN Products p on p.ProductID=od.ProductID
-  INNER JOIN Categories ct on ct.CategoryID = p.CategoryID 
+  INNER JOIN Categories ct on ct.CategoryID = p.CategoryID
+
+-- DISCTINC, GROUP BY, HAVING
+
+SELECT DISTINCT City
+From Customers
+-- Tekrar eden şehirleri silerek şehirleri getir
+
+-- GROUP BY
+SELECT City, Count(*) AS 'Number of Customer'
+FROM Customers
+GROUP BY City
+
+-- HAVING
+-- GROUP BY varsa HAVING, WHERE ile aynı işleve sahip, HAVING ile de koşul yazıyorum
+-- HAVING ISIM = "ANIL" gibi --> ismi Anıl olanları getir
+SELECT EmployeeID, Count(*) AS 'Siparis sayisi'
+FROM Orders
+GROUP BY EmployeeID
+HAVING EmployeeID = 5
+ORDER BY EmployeeID
+
+-- Her bir ürünün ne kadar satıldığını gösteriyor
+SELECT od.ProductID, p.ProductName as [Satış Miktarı]
+FROM [Order Details] od INNER JOIN Products p on od.ProductID = p.ProductID
+
