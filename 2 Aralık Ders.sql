@@ -90,6 +90,16 @@ SELECT od.ProductID, p.ProductName, COUNT(*) as [Satış Adedi]
 FROM [Order Details] od INNER JOIN Products p ON od.ProductID = p.ProductID
 GROUP BY od.ProductID, p.ProductName
 
+-- 9.12.2024
+-- 5'Lİ TABLO BİRLEŞTİRME
 SELECT c.CategoryName, ContactName, ProductName, c.CategoryID
 FROM Products p INNER JOIN Categories c ON p.CategoryID = c.CategoryID INNER JOIN [Order Details] od ON od.ProductID = p.ProductID INNER JOIN Orders o ON o.OrderID = od.OrderID
   INNER JOIN Customers ct ON ct.CustomerID = o.CustomerID
+
+
+-- INNER JOIN VE GROUP BY BİR ARADA ÖRNEK
+SELECT CategoryName, COUNT(*) AS 'Satış Miktarı'
+FROM Categories INNER JOIN Products ON Categories.CategoryID = Products.CategoryID
+  INNER JOIN [Order Details] ON [Order Details].[ProductID] = Products.ProductID
+GROUP BY Categories.CategoryName
+HAVING COUNT(*) < 200
