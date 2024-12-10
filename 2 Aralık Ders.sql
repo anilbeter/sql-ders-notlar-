@@ -152,8 +152,11 @@ declare @newdate as datetime
 set @newdate = '1999-12-31'
 SELECT DATEDIFF(YEAR, @newdate, @date)
 
--- DATEFROMPART
--- DATEPART
+-- DATEFROMPART (Bu fonksiyon belirtilen yıl, ay ve gün değerlerine eşlenen bir tarih değeri döndürür.)
+SELECT DATEFROMPARTS ( 2010, 12, 31 ) AS Tarih
+
+-- DATEPART (Bu fonksiyon belirtilen tarihin belirtilen tarih bölümünü temsil eden bir tamsayı döndürür .)
+SELECT DATEPART(YEAR, '2017/08/25') AS [Sadece Yılı Veren Sütun];
 
 declare @tarih as date
 set @tarih = GETDATE()
