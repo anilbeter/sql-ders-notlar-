@@ -103,3 +103,60 @@ FROM Categories INNER JOIN Products ON Categories.CategoryID = Products.Category
   INNER JOIN [Order Details] ON [Order Details].[ProductID] = Products.ProductID
 GROUP BY Categories.CategoryName
 HAVING COUNT(*) < 200
+
+-- VARIABLES
+DECLARE @AD AS VARCHAR(50)
+SELECT @AD
+-- SELECT 'Anil'
+DECLARE @AD AS VARCHAR(50) = 'Anil'
+Select @AD
+
+DECLARE @AD AS VARCHAR(50) = 'Anil'
+SET @AD = 'Cody'
+SELECT @AD
+
+declare @sayi as integer
+set @sayi = 22
+declare @sayi1 as integer
+set @sayi1 = 25
+declare @toplam as integer
+set @toplam = @sayi + @sayi1
+select @sayi as [1. Sayı], @sayi1 as [2. Sayı], @toplam as Toplam
+
+declare @isim as ncvarchar(30)
+declare @telefon as NVARCHAR(24)
+select
+
+declare @date as datetime
+set @date = GETDATE()
+declare @newdate as datetime
+set @newdate = DATEADD(YEAR, 3, @date)
+select @newdate
+-- 2027-12-09 11:15:52.897
+
+declare @date as datetime
+set @date = GETDATE()
+declare @newdate as datetime
+set @newdate = DATEADD(MONTH, 15, @date)
+select @newdate
+
+declare @date as datetime
+set @date = GETDATE()
+declare @newdate as datetime
+set @newdate = DATEADD(DAY, 56, @date)
+select @newdate
+
+declare @date as DATETIME
+set @date = '2024-12-9'
+declare @newdate as datetime
+set @newdate = '1999-12-31'
+SELECT DATEDIFF(YEAR, @newdate, @date)
+
+-- DATEFROMPART
+-- DATEPART
+
+declare @tarih as date
+set @tarih = GETDATE()
+DECLARE @dtarihi as date
+set @dtarihi = '1999-12-31'
+SELECT DATEDIFF(YEAR, @dtarihi, @tarih) AS [Yıl olarak], DATEDIFF(MONTH, @dtarihi, @tarih) [AY OLARAK], DATEDIFF(MINUTE, @dtarihi, @tarih) [DAKİKA OLARAK]
